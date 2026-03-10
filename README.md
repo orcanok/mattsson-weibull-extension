@@ -28,8 +28,7 @@ Given a parameter case (outcomes, baseline probabilities, preferences, discount 
    - $$\(t_2(i)\)$$ for period 2 conditional on history \(i\).
 
 2. Computes:
-   - wage schedules $$\(w_1(\pi_i)\)$$, $$\(w_2(\pi_j \mid \pi_i)\)$$,
-   - induced distributions $$\(p_1^*(i)\)$$ and $$\(p_2^*(j\mid i)\)$$
+   - Thresholds
    - principal profit $$\(\Pi\)$$ and agent utility $$\(U\)$$,
    - continuation terms $$\(C_i\)$$.
 
