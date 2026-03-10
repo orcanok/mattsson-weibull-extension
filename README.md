@@ -52,8 +52,8 @@ Each entry specifies $$\(\pi\)$$, $$\(p^0\)$$, discount factors $$\((\beta,\delt
   $$\(\bar u^{(1)}=\ln(0.12)\)$$.
 
 - **`one_period_low_outside_option`**  
-  Same one-period benchmark implementation (`beta=0.0`, `delta=0.0`).  
-  **Note:** in the current dictionary this case still uses \(\bar u^{(1)}=\ln(0.12)\); if you intend a lower outside option, update `ubar` accordingly.
+  One-period benchmark implemented by setting `beta=0.0`, `delta=0.0`, with a lower outside option  
+  $$\(\bar u^{(1)}=\ln(0.05)\)$$.
 
 - **`baseline_two_period`**  
   Two-period long-term contract with `beta=1.0`, `delta=1.0` and two-period outside option  
