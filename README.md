@@ -29,8 +29,7 @@ Given a parameter case (outcomes, baseline probabilities, preferences, discount 
 
 2. Computes:
    - wage schedules $$\(w_1(\pi_i)\)$$, $$\(w_2(\pi_j \mid \pi_i)\)$$,
-   - induced distributions $$\(p_1^*(i)\)$$
-   - $$\(p_1^*(i)\)$$, $$ \(p_2^*(j\mid i)\) $$,
+   - induced distributions $$\(p_1^*(i)\)$$, $$\(p_2^*(j\mid i)\)$$
    - principal profit $$\(\Pi\)$$ and agent utility $$\(U\)$$,
    - continuation terms $$\(C_i\)$$.
 
@@ -51,7 +50,7 @@ Each entry specifies $$\(\pi\)$$, $$\(p^0\)$$, discount factors $$\((\beta,\delt
 
 - **`baseline_one_period`**  
   One-period benchmark implemented by setting `beta=0.0`, `delta=0.0`, with outside option  
-  \(\bar u^{(1)}=\ln(0.12)\).
+  $$\(\bar u^{(1)}=\ln(0.12)\)$$.
 
 - **`one_period_low_outside_option`**  
   Same one-period benchmark implementation (`beta=0.0`, `delta=0.0`).  
@@ -59,22 +58,22 @@ Each entry specifies $$\(\pi\)$$, $$\(p^0\)$$, discount factors $$\((\beta,\delt
 
 - **`baseline_two_period`**  
   Two-period long-term contract with `beta=1.0`, `delta=1.0` and two-period outside option  
-  \(\bar u^{(2)}=(1+\delta)\ln(0.12)=2\ln(0.12)\).
+  $$\(\bar u^{(2)}=(1+\delta)\ln(0.12)=2\ln(0.12)\)$$.
 
 - **`two_period_low_outside_option`**  
   Two-period long-term contract with `beta=1.0`, `delta=1.0` and  
-  \(\bar u^{(2)}=(1+\delta)\ln(0.05)=2\ln(0.05)\).
+  $$\(\bar u^{(2)}=(1+\delta)\ln(0.05)=2\ln(0.05)\)$$.
 
 - **`two_period_impatient_principal`**  
   Two-period long-term contract with impatient principal (`beta=0.1`) and patient agent (`delta=1.0`),  
-  with \(\bar u^{(2)}=2\ln(0.12)\).
+  with $$\(\bar u^{(2)}=2\ln(0.12)\)$$.
 
 All cases currently use:
-- outcomes \(\pi \in \{-1,0,1\}\),
-- baseline probabilities \(p^0=(0.5,0.3,0.2)\),
-- unit relative risk aversion \(\rho=1\),
-- \(\theta=1\),
-- external income \(\varepsilon=0.05\).
+- outcomes $$\(\pi \in \{-1,0,1\}\)$$,
+- baseline probabilities $$\(p^0=(0.5,0.3,0.2)\)$$,
+- unit relative risk aversion $$\(\rho=1\)$$,
+- $$\(\theta=1\)$$,
+- external income $$\(\varepsilon=0.05\)$$.
 
 ---
 
