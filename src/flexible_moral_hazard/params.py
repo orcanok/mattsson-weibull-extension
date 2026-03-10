@@ -26,7 +26,7 @@ CASES: dict[str, dict] = {
         "rho": 1.0,
         "theta": 1.0,
         "eps": 0.05,
-        "ubar": float(np.log(0.12)),  # one-period outside option
+        "ubar": float(np.log(0.05)),  # one-period outside option
     },   
     "baseline_two_period": {
         "pi": np.array([-1.0, 0.0, 1.0]),
