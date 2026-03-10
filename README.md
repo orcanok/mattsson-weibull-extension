@@ -24,7 +24,7 @@ The repo includes a reproducible pipeline that:
 Given a parameter case (outcomes, baseline probabilities, preferences, discount factors, outside option), the pipeline:
 
 1. Solves the principal’s problem under the canonical parameterization (thresholds):
-   - \(t_1\) for period 1,
+   - $$\(t_1\)$$ for period 1,
    - \(t_2(i)\) for period 2 conditional on history \(i\).
 
 2. Computes:
