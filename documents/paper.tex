@@ -1,0 +1,430 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsthm}
+\usepackage{amsmath,amssymb}
+\let\dddot\relax     % relax AFTER amsmath is loaded
+\let\ddddot\relax
+\usepackage{accents}
+\usepackage{amsfonts}
+\usepackage{xfp}
+\usepackage{comment}
+\newcommand{\R}{\mathbb{R}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{assumption}{Assumption}[section]
+
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+\input{generated/results.tex}
+\title{A Two-Period Extension of Mattsson and Weibull's Principal--Agent Model}
+\author{Orcan Ok}
+\date{15 March 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+The paper \textit{An Analytically Solvable Principal–Agent Model} by Lars-Göran Mattsson and Jörgen W. Weibull (GEB, 2023) studies a single-period,
+discrete-time principal–agent model with moral hazard and a finite set of outcomes. The agent can induce any probability distribution over outcomes, but doing so entails an effort cost that varies across distributions.
+
+They focus on a class of effort-cost functions—\emph{Legendre-type} costs—that are invariant to merging equally paid outcomes. In particular,
+if two outcomes yield the same wage to the agent, collapsing them into a single outcome leaves the agent’s optimal behavior unchanged.
+For tractability, the analysis then specializes to the Kullback–Leibler (KL) divergence, a specific f-divergence within the broader class of Legendre-type costs.
+
+These assumptions make the model analytically tractable and allow the authors to solve both the agent’s and the principal’s problems in closed
+form. They then specialize to risk-neutral and constant-relative-risk-averse (CRRA) preferences to obtain interesting results, including the emergence of simple debt-like (threshold) optimal contracts.
+
+In this write-up, I extend the model to a simple dynamic setting. Specifically, I consider two periods and allow the parties to sign a
+long-term contract in which the second-period wage can be conditioned on the first-period outcome. The main question is whether the
+debt-like (threshold) structure of optimal contracts survives in this environment. Intuitively, the prospect of future compensation
+provides the principal with an additional incentive instrument to influence first-period effort. While this intertemporal linkage
+could in principle complicate the contract, the extension remains tractable and yields a characterization that is closely related to the single-period case.
+
+\section{The Original Model and Main Results in the Paper}
+In the single-period baseline model, the principal hires an agent to perform a task. The agent’s effort is not verifiable and therefore not contractible; consequently, the contract can depend only on the realized output.
+
+There is a finite set of outcomes, indexed by \(K:=\{1,\ldots,n\}\), and the set of probability distributions over \(K\) is $\Delta(K):=\Bigl\{p\in\mathbb{R}^{n}:\ \sum_{k=1}^{n}p_k=1\Bigr\}$.
+
+The agent can induce any distribution \(p\in\Delta(K)\) at an effort cost \(\psi:\Delta(K)\to\mathbb{R}\), which is assumed to be continuous.
+
+Each outcome \(k\in K\) is associated with a gross profit level \(\pi_k\in Q:=\{\pi_1,\ldots,\pi_n\}\subset\mathbb{R}\). 
+Since the principal can verify only the realized output, she offers an output-contingent contract \(w:Q\to\mathbb{R}_{+}\), 
+which specifies a nonnegative payment \(w_k:=w(\pi_k)\) for each \(\pi_k\in Q\). The restriction \(w_k\ge 0\) for all \(k\) captures limited liability of the agent.
+
+The agent’s subutility from wage income is given by a function \(u:\mathbb{R}_{+}\to\mathbb{R}\), which is assumed to be continuous, strictly increasing, and unbounded above.
+
+The agent’s effort cost is assumed to take the form of a Kullback--Leibler (KL) divergence:
+
+\[
+\psi(p)=\sum_{k\in K} p_k \ln\!\left(\frac{p_k}{p_k^{0}}\right),
+\]
+which is the maintained assumption in what follows.
+The probabilities \(p^{0}=(p_k^{0})_{k=1}^{n}\in\Delta(K)\) can be interpreted as default probabilities, i.e.\ the outcome distribution that would obtain absent any effort.
+
+In the KL case, the agent’s optimal choice \(p^{*}(w)\) takes the closed-form expression stated in Proposition~4 of the paper, where the agent's  optimal choice is
+\[
+p_k^{*}(w)=\frac{p_k^{0}e^{u(w_k)}}{\sum_{j\in K} p_j^{0}e^{u(w_j)}} \qquad \forall\,k\in K,
+\]
+and the associated achieved utility is
+\[
+U^{*}(w)=\ln\!\Bigl(\sum_{k\in K} p_k^{0}e^{u(w_k)}\Bigr).
+\]
+
+Solving the principal’s problem yields a canonical characterization of optimal contracts (Theorem~1 in Mattsson and Weibull). In particular, when \(\psi\) is of the KL form and \(u\) is
+increasing and concave, an optimal contract can be written as a threshold--sharing rule:
+\[
+w^{*}(\pi_k)=s\!\left(\max\{0,\pi_k-t\}\right)\qquad \forall\,\pi_k\in Q,
+\]
+for some threshold \(t\in\mathbb{R}\) and some increasing function \(s:\mathbb{R}_{+}\to\mathbb{R}_{+}\) (the ``sharing rule'').
+
+In particular, \(s\) satisfies the implicit equation
+\begin{equation}\label{eq:s(x)}
+s(x)=x-\frac{1}{u'(s(x))}+\frac{1}{u'(0)} \qquad \forall\,x\ge 0.
+\end{equation}
+
+From this point onward, the paper specializes to particular functional forms for the subutility function \(u\).
+
+
+\section{Extension: A Two-Period Contract}
+\subsection{The Setting}
+
+The environment is the same as in the baseline model, except that there are now two periods. At \(t=0\), the principal offers a long-term contract and can condition second-period wages on the first-period outcome.
+I assume full commitment to the wage schedule: once the contract is signed, neither party can renegotiate after \(\pi_1\) is realized.\footnote{If the parties can renegotiate after \(\pi_1\) is realized, history-dependent
+continuation terms are generally not credible: in period 2 there will typically exist a Pareto-improving renegotiation to the one-period optimal
+contract for that period (given the relevant participation constraint). Anticipating this, the principal cannot credibly commit to future rewards or punishments, and the dynamic incentive effect disappears.
+An alternative interpretation is that the principal has a commitment device that makes renegotiation infeasible—for example, wages may be pre-programmed and paid automatically in an irreversible way.}
+A two-period contract is a pair \((w_1,w_2)\) where
+\[
+w_1:Q\to\mathbb{R}_+,\qquad w_2:Q\times Q\to\mathbb{R}_+,
+\]
+with the interpretation
+\[
+w_1(\pi_i)=:w_{1i},\qquad w_2(\pi_j\mid \pi_i)=:w_{2j\mid i}.
+\]
+Limited liability requires \(w_{1i}\ge 0\) and \(w_{2j\mid i}\ge 0\) for all \(i,j\in K\). The agent discounts future utility by \(\delta\in(0,1]\), while the principal discounts future profits by \(\beta\in(0,1]\).
+
+The timing is as follows:
+\begin{enumerate}
+\item[\(t=0\):] The principal commits to a two-period contract \((w_1,w_2)\).
+\item[\textbf{Period 1:}] The agent chooses \(p_1\in\Delta(K)\); an outcome \(\pi_1=\pi_i\) is realized; the wage \(w_{1i}\) is paid.
+\item[\textbf{Period 2:}] After observing \(\pi_1=\pi_i\), the agent chooses \(p_2(\pi_i)\in\Delta(K)\); an outcome \(\pi_2=\pi_j\) is realized; the wage \(w_{2j\mid i}\) is paid.
+\end{enumerate}
+
+\subsection{Agent's Choice in Period 2}
+
+Agent's problem in Period 2 is the same problem as in the one-period model, conditional on the history \(i\). Hence the optimal choice again takes the form:
+\begin{equation}\label{eq:p2j}
+p_{2j}^*(i)
+=
+\frac{p_j^0 e^{u(w_{2j\mid i})}}{\sum_{\ell\in K}p_\ell^0 e^{u(w_{2\ell\mid i})}},
+\qquad \forall\, j\in K.
+\end{equation}
+
+The agent’s continuation utility at the beginning of period~2 is therefore
+\begin{equation}\label{eq:u2_agent}
+U_2^*(i)
+=
+\max_{p_2\in\Delta(K)}\left\{\sum_{j\in K} p_{2j}\,u(w_{2j\mid i})-\psi(p_2)\right\}
+=
+\ln\!\left(\sum_{\ell\in K}p_\ell^0 e^{u(w_{2\ell\mid i})}\right).
+\end{equation}
+
+\subsection{Agent's Choice in Period 1}
+
+Solving the agent’s problem in Period 1 by standard Lagrangian methods yields
+\begin{equation}\label{eq:p2i}
+p_{1i}^*
+=
+\frac{p_i^0\,e^{u(w_{1i})}\,Z_i^{\delta}}
+{\sum_{m\in K}p_m^0\,e^{u(w_{1m})}\,Z_m^{\delta}}
+=
+\frac{p_i^0\,e^{u(w_{1i})+\delta U_2^*(i)}}
+{\sum_{m\in K}p_m^0\,e^{u(w_{1m})+\delta U_2^*(m)}},
+\qquad \forall\, i\in K.
+\end{equation}
+The associated ex-ante utility at the beginning of period~1 is
+\begin{equation}\label{eq:u1_agent}
+U^*(w_1,w_2)
+=
+\ln\!\left(\sum_{i\in K}p_i^0\,e^{u(w_{1i})}Z_i^{\delta}\right)
+=
+\ln\!\left(\sum_{i\in K}p_i^0\,e^{u(w_{1i})+\delta U_2^*(i)}\right).
+\end{equation}
+
+Relative to the one-period model (Proposition~4), the only difference is that the agent’s effective subutility for outcome \(i\) is \(u(w_{1i})+\delta U_2^*(i)\), i.e.\ current 
+utility plus the discounted continuation value induced by the history-dependent second-period contract.
+
+\subsection{Optimal Contract Chosen by the Principal}
+
+Solving the principal's problem using Lagrangian method gives the following theorem:
+
+\begin{theorem}\label{thm:two_period_structure}
+Assume that the agent’s wage subutility \(u:\mathbb{R}_+\to\mathbb{R}\) is twice differentiable with \(u'>0\) and \(u''\le 0\), and that the effort cost is of the KL form. 
+Then the optimal two-period contract admits a threshold--sharing representation. In particular, there exist thresholds \(t_1\in\mathbb{R}\) and \(t_2:K\to\mathbb{R}\) such that
+\begin{equation}\label{eq:w1_general}
+w_1^*(\pi_i)=s\!\left(\max\{0,\pi_i+C_i-t_1\}\right),
+\qquad \forall\, i\in K,
+\end{equation}
+and
+\begin{equation}\label{eq:w2_general}
+w_2^*(\pi_j\mid \pi_i)=s\!\left(\max\{0,\pi_j-t_2(i)\}\right),
+\qquad \forall\, i,j\in K.
+\end{equation}
+Here \(s:\mathbb{R}_+\to\mathbb{R}_+\) is the sharing rule characterized by \eqref{eq:s(x)}, and
+\[
+C_i=\beta\sum_{j\in K}p_{2j}^*(i)\,(\pi_j-w_{2j\mid i})
+\]
+denotes the principal’s discounted continuation profit following history \(i\).
+\end{theorem}
+\begin{proof}
+See Appendix.
+\end{proof}
+Thus, in period~1 the principal behaves as if the relevant ``effective output'' were \(\pi_i+C_i\), i.e.\ current output plus discounted expected continuation profit.
+
+\subsubsection{Numerics and Discussion}
+It is worth emphasizing that, although the two-period problem---especially the principal’s problem (see Appendix)---appears substantially more complicated than its 
+one-period counterpart, the resulting optimal behavior remains closely linked to the single-period solution. In period~1, the agent behaves as if facing a one-period 
+problem with an effective utility equal to current utility plus discounted expected utility tomorrow. Likewise, the principal behaves as if facing a one-period 
+problem in which the effective output in history \(i\) is \(\pi_i\) plus the discounted expected profit induced by the period-2 contract.
+
+It is natural to complement the analytical characterization with a numerical comparison between (i) an environment in which the parties can sign a joint two-period 
+contract and (ii) a benchmark in which contracting is restricted to one-period agreements in each period.
+
+Since the principal can always replicate the one-period benchmark within the two-period contract space—by choosing continuation terms that do not depend on the 
+first-period outcome (i.e.\ setting \(t_2(i)\) constant across \(i\))—the option to write a joint two-period contract can only weakly increase the principal’s expected profit.
+
+The welfare implications for the agent are less clear. In particular, the principal may use history dependence to create ``career concerns'': poor 
+first-period performance can be followed by an unfavorable continuation contract, whereas good performance can be rewarded with more favorable terms. 
+Such intertemporal incentives may induce the agent to exert more effort in period~1 than under a stand-alone one-period contract. As a result, 
+the agent may be worse off relative to the benchmark of two separate one-period contracts, even if participation holds ex ante.
+
+At the same time, the opposite pattern is also possible. If the principal is relatively impatient (i.e.\ \(\beta\) is small), she may prefer to 
+backload compensation and use generous promised continuation terms to strengthen first-period incentives at relatively low present-value cost. 
+In that case, a joint two-period contract can increase both expected output and expected wage payments, and the agent may end up strictly better off than under repeated one-period contracting.
+
+I begin with the numerical example in the appendix of Mattsson and Weibull. There are three outcomes \(K=\{1,2,3\}\) with gross profits \(\pi\in\{-1,0,1\}\) 
+and baseline probabilities \(p^0=(0.5,0.3,0.2)\). The agent has unit relative risk aversion (\(\rho=1\)), external income \(\varepsilon=0.05\), 
+and a one-period outside option \(\bar u^{(1)}=\ln(0.12)\approx -2.12\).\footnote{Since utility is measured on an arbitrary cardinal scale 
+(and, for \(\rho=1\), \(u(w)=\theta\ln(w+\varepsilon)\)), negative reservation utility levels are not problematic.} In this case, the one-period 
+optimal contract is a threshold contract with \(t\approx \tOnebaselineoneperiod\), yielding an expected profit of approximately \(\Pibaselineoneperiod\) 
+for the principal while giving the agent expected utility \(\Ubaselineoneperiod\), i.e.\ the participation constraint almost binds.
+
+Assume both parties are fully patient, i.e.\ \(\beta=\delta=1\). The agent’s outside option for the \emph{two-period} relationship is
+\[
+\bar u \;=\; 2\ln(0.12)\;\approx\;-4.241 .
+\]
+If the parties contract separately in each period using the one-period optimal contract (with the same per-period outside option), 
+the principal’s expected total profit is approximately \(\fpeval{round(2*\Pibaselineoneperiod, 3)}\), while the agent’s expected 
+total utility equals \(\fpeval{round(2*\Ubaselineoneperiod, 3)}\) (i.e.\ her outside option). If instead the parties can sign a 
+long-term two-period contract, the principal optimally chooses a history-dependent wage schedule of the form
+\[
+w_1^*(\pi_i)=s\!\left(\max\{0,\pi_i+C_i-t_1\}\right),\qquad \forall\, i\in K,
+\]
+with \(t_1\approx \tOnebaselinetwoperiod\) and continuation terms
+\[
+C_1 \approx \CAbaselinetwoperiod,\qquad C_2 \approx \CBbaselinetwoperiod,\qquad C_3 \approx \CCbaselinetwoperiod.
+\]
+Continuation wages take the analogous form
+\[
+w_2^*(\pi_j\mid \pi_i)=s\!\left(\max\{0,\pi_j-t_2(i)\}\right),\qquad \forall\, i,j\in K,
+\]
+where
+\[
+t_2(1)\approx \tTwoAbaselinetwoperiod,\quad t_2(2)\approx \tTwoBbaselinetwoperiod,\quad t_2(3)\approx \tTwoCbaselinetwoperiod.
+\]
+Under this joint contract, the principal’s expected profit rises to about \(\Pibaselinetwoperiod\), while the agent’s expected utility remains at \(\Ubaselinetwoperiod\); 
+thus the participation constraint binds and the agent is held at her outside option. As expected, allowing a joint two-period contract makes the principal strictly better off in this example.
+
+Next, lower the agent’s \emph{one-period} outside option to \(\ln(0.05)\approx -2.996\). As in the original paper, the one-period optimal 
+contract remains essentially unchanged (with \(t\approx \tOneoneperiodlowoutsideoption\)), so the induced allocation and the principal’s profit are unchanged; 
+however, participation is now slack and the agent receives strictly more than her reservation utility (e.g.\ \(\Uoneperiodlowoutsideoption > -2.996\) 
+in the one-period benchmark). If, on the other hand, the parties can sign a two-period contract, the principal again chooses a contract of the same form as before. The optimal parameters are approximately
+\[
+t_1 \approx \tOnetwoperiodlowoutsideoption,\qquad
+t_2(1)\approx \tTwoAtwoperiodlowoutsideoption,\quad
+t_2(2)\approx \tTwoBtwoperiodlowoutsideoption,\quad
+t_2(3)\approx -0.08,
+\]
+\[
+C_1 \approx \CAtwoperiodlowoutsideoption,\qquad
+C_2 \approx \CBtwoperiodlowoutsideoption,\qquad
+C_3 \approx \CCtwoperiodlowoutsideoption.
+\]
+Under this joint contract, the principal’s expected profit is about \(\Pitwoperiodlowoutsideoption\), while the agent’s expected utility is \(\Utwoperiodlowoutsideoption\), 
+which is lower than under repeated one-period contracting \(\fpeval{round(2*\Uoneperiodlowoutsideoption, 3)}\). Thus, allowing a joint two-period contract can increase the principal’s profit at the expense of the agent.
+
+To illustrate that joint contracting can also benefit the agent, revert to the baseline one-period outside option \(\bar u^{(1)}\approx -2.12\) and set \(\delta=1\) 
+so that \(\bar u^{(2)}\approx -4.241\).\footnote{With \(\delta=1\), the two-period outside option equals \(\bar u^{(2)}=(1+\delta)\bar u^{(1)}\approx -4.241\).} 
+Suppose further that the principal is very impatient, with \(\beta=0.1\), while all other parameters remain unchanged. The optimal two-period contract then has approximately
+\[
+t_1 \approx \tOnetwoperiodimpatientprincipal,\qquad
+t_2(1)\approx \tTwoAtwoperiodimpatientprincipal,\quad
+t_2(2)\approx \tTwoBtwoperiodimpatientprincipal,\quad
+t_2(3)\approx \tTwoCtwoperiodimpatientprincipal,
+\]
+\[
+C_1 \approx \CAtwoperiodimpatientprincipal,\qquad
+C_2 \approx \CBtwoperiodimpatientprincipal,\qquad
+C_3 \approx \CCtwoperiodimpatientprincipal.
+\]
+It is interesting to note that $t_1$ is so high that principal gets $0$ wage in period-1 regardless of the output. In this case, the principal’s 
+expected profit is about \(\Pitwoperiodimpatientprincipal\), and the agent’s expected utility is \(\Utwoperiodimpatientprincipal\), which is higher than under repeated one-period 
+contracting \(\fpeval{round(2*\Uoneperiodlowoutsideoption, 3)}\). 
+Hence, the possibility of a joint two-period contract can also generate a Pareto improvement.
+\section{Conclusion}
+
+This write-up extends Mattsson and Weibull’s analytically solvable principal--agent model to a two-period environment in which the principal can 
+condition continuation wages on first-period performance. The extension preserves the structure of the agent’s induced distributions: period-2 
+behavior is identical to the one-period problem conditional on the first-period history, and period-1 behavior depends on an effective utility 
+that aggregates current utility and discounted continuation value.
+
+Analytically, the optimal wage schedules retain a simple canonical form. Under risk neutrality, optimal contracts are debt-like (threshold) 
+in both periods, with a history-dependent face value in period~2 and a period~1 threshold written on a continuation-adjusted performance measure. 
+Under CRRA preferences, the same threshold structure remains, but surplus above the threshold is shared according to the paper’s canonical sharing rule.
+
+Numerically, allowing a joint two-period contract can strictly increase the principal’s expected profit relative to repeated one-period contracting. 
+The welfare implications for the agent are ambiguous: history-dependent continuation terms may discipline first-period behavior and reduce the agent’s 
+expected utility relative to the benchmark, but when the principal is sufficiently impatient, backloading incentives through the continuation 
+contract can also raise the agent’s expected utility, generating a Pareto improvement. A natural direction for future work is to explore whether similar qualitative patterns persist in longer horizons.
+
+\section{Appendix: Proof for Theorem~\ref{thm:two_period_structure}}
+\label{app:general_u}
+Let $D:=\sum_{i\in K}p_i^0\,e^{u(w_{1i})}\,Z_i^\delta$. The principal's expected profit is:
+
+\begin{equation}\label{eq:principal_problem}
+  \Pi^*(w_1,w_2)
+=
+\sum_{i\in K}
+\frac{p_i^0\,e^{u(w_{1i})}\,Z_i^\delta}{D}
+\Bigg[
+(\pi_i-w_{1i})
++\beta\cdot \frac{1}{Z_i}\sum_{j\in K}p_j^0 e^{u(w_{2j\mid i})}\,(\pi_j-w_{2j\mid i})
+\Bigg].
+\end{equation}
+
+
+The principal chooses $(w_1,w_2)$ to maximize $\Pi^*(w_1,w_2)$ subject to participation and limited liability. Assume that the agent's outside 
+option is $\bar{u}$. The participation constraint of the agent becomes: $U^*(w_1,w_2)=\ln D\ge \bar u\quad\Longleftrightarrow\quad D\ge e^{\bar u}.$
+
+
+Let \(\eta\ge 0\) be the multiplier on participation and let \(\mu_{1i}\ge 0\) and
+\(\mu_{2j\mid i}\ge 0\) be the multipliers on limited liability. The Lagrangian is
+\[
+\mathcal{L}
+=
+\Pi^*(w_1,w_2)
++\eta\big(\ln D-\bar u\big)
++\sum_{i\in K}\mu_{1i}w_{1i}
++\sum_{i\in K}\sum_{j\in K}\mu_{2j\mid i}w_{2j\mid i}.
+\]
+
+Define the principal's continuation (net) profit given history \(i\) as
+\[
+\Pi_i
+:=
+(\pi_i-w_{1i})
++\beta\sum_{j\in K}p_{2j}^*(i)\,(\pi_j-w_{2j\mid i}),
+\qquad
+\Pi^*:=\sum_{i\in K}p_{1i}^*\Pi_i.
+\]
+
+Then, the Karush--Kuhn--Tucker (KKT) condition for \(w_{1i}\) is
+\begin{equation}\label{eq:kkt_1_app}
+0
+=
+\frac{\partial \mathcal{L}}{\partial w_{1i}}
+=
+-\,p_{1i}^*
++
+p_{1i}^*u'(w_{1i})\big(\Pi_i-\Pi^*\big)
++\eta\,p_{1i}^*u'(w_{1i})
++\mu_{1i}.
+\end{equation}
+
+Define conditional period-2 net profit in state \(j\) after history \(i\) by
+\[
+\tilde\Pi_{ij}:=\pi_j-w_{2j\mid i},
+\qquad
+\tilde\Pi_i:=\sum_{\ell\in K}p_{2\ell}^*(i)\tilde\Pi_{i\ell}.
+\]
+Then, the KKT condition for \(w_{2j\mid i}\) is
+\begin{equation}\label{eq:kkt_2_app}
+-\beta
++
+\beta\,u'(w_{2j\mid i})\big(\tilde\Pi_{ij}-\tilde\Pi_i\big)
++
+\delta\,u'(w_{2j\mid i})\big(\Pi_i-\Pi^*+\eta\big)
++
+\frac{\mu_{2j\mid i}}{p_{1i}^*p_{2j}^*(i)}
+=0.
+\end{equation}
+Assume \(u:\mathbb{R}_+\to\mathbb{R}\) is twice differentiable with \(u'>0\) and \(u''\le 0\).
+Define
+\begin{equation}\label{eq:g_def_general}
+g(w):=w+\frac{1}{u'(w)},\qquad w\ge 0.
+\end{equation}
+Since $g'(w) \ge 0$, the function \(g\) is strictly increasing on \(\mathbb{R}_+\) and hence invertible. Define the sharing rule \(s:\mathbb{R}_+\to\mathbb{R}_+\) by $s(x):=g^{-1}\!\big(g(0)+x\big)$ , $x\ge 0.$
+Equivalently, \(s\) is characterized implicitly by
+\begin{equation}\label{eq:s_general_def_implicit}
+x=s(x)+\frac{1}{u'(s(x))}-\frac{1}{u'(0)},\qquad \forall x\ge 0,
+\end{equation}
+which is the same condition as \eqref{eq:s(x)} in Theorem~1.
+Define
+\[
+A_i:=\delta(\Pi_i-\Pi^*+\eta),
+\qquad
+\Gamma_i:=\frac{A_i}{\beta}-\tilde\Pi_i.
+\]
+We get
+\begin{equation}\label{eq:period2_g_identity_general}
+g(w_{2j\mid i})
+=w_{2j\mid i}+\frac{1}{u'(w_{2j\mid i})}
+=\pi_j+\Gamma_i.
+\end{equation}
+Since \(g\) is strictly increasing, the interior solution is \(w_{2j\mid i}=g^{-1}(\pi_j+\Gamma_i)\).
+Imposing limited liability \(w_{2j\mid i}\ge 0\), define the history-dependent threshold
+\begin{equation}\label{eq:t2_def_general}
+t_2(i):=g(0)-\Gamma_i.
+\end{equation}
+If \(\pi_j\le t_2(i)\), then \(\pi_j+\Gamma_i\le g(0)\) and the limited-liability corner implies \(w_{2j\mid i}=0\). If \(\pi_j>t_2(i)\), then
+\(\pi_j+\Gamma_i=g(0)+(\pi_j-t_2(i))\) and thus
+\[
+w_{2j\mid i}=g^{-1}\!\big(g(0)+(\pi_j-t_2(i))\big)=s(\pi_j-t_2(i)).
+\]
+Combining the corner and interior regions yields
+\begin{equation}\label{eq:w2_general_derived}
+w_2^*(\pi_j\mid \pi_i)=s\!\left(\max\{0,\pi_j-t_2(i)\}\right),
+\qquad \forall\, i,j\in K.
+\end{equation}
+Now consider \eqref{eq:kkt_1_app} in the interior region where \(w_{1i}>0\) so \(\mu_{1i}=0\). Some algebra gives
+\[
+\frac{1}{u'(w_{1i})}=\pi_i-w_{1i}+C_i-\Pi^*+\eta
+\quad\Longleftrightarrow\quad
+g(w_{1i})=\pi_i+C_i-\Pi^*+\eta.
+\]
+Thus the interior solution is \(w_{1i}=g^{-1}(\pi_i+C_i-\Pi^*+\eta)\). Imposing limited liability \(w_{1i}\ge 0\), define
+\begin{equation}\label{eq:t1_def_general}
+t_1:=g(0)+\Pi^*-\eta.
+\end{equation}
+If \(\pi_i+C_i\le t_1\), then \(w_{1i}=0\); otherwise,
+\[
+w_{1i}=g^{-1}\!\big(g(0)+(\pi_i+C_i-t_1)\big)=s(\pi_i+C_i-t_1).
+\]
+Hence
+\begin{equation}\label{eq:w1_general_derived}
+w_1^*(\pi_i)=s\!\left(\max\{0,\pi_i+C_i-t_1\}\right),
+\qquad \forall\, i\in K.
+\end{equation}
+
+
+
+
+\end{document}
