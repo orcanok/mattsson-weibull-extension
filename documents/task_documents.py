@@ -1,4 +1,3 @@
-# tasks/task_documents.py
 import subprocess
 from pathlib import Path
 
@@ -7,8 +6,6 @@ import pytask
 from flexible_moral_hazard.config import DOCUMENTS, ROOT
 
 PAPER_FIGURES: list[Path] = []
-
-# This is the file produced by task_results_tex.
 GENERATED_RESULTS: Path = DOCUMENTS / "generated" / "results.tex"
 
 
@@ -19,19 +16,34 @@ def task_compile_latex_paper(
     figures: list[Path] = PAPER_FIGURES,
     produces: Path = ROOT / "paper.pdf",
 ) -> None:
-    """Compile LaTeX paper to PDF."""
-    # First pass
-    subprocess.run(
-        ("pdflatex", "-interaction=nonstopmode", "-halt-on-error", tex.name),
-        check=True,
-        cwd=DOCUMENTS,
-    )
-    # Second pass (refs/citations)
+    """Compile LaTeX paper to PDF (with BibTeX)."""
+    # 1) pdflatex -> .aux
     subprocess.run(
         ("pdflatex", "-interaction=nonstopmode", "-halt-on-error", tex.name),
         check=True,
         cwd=DOCUMENTS,
     )
 
-    built = DOCUMENTS / tex.with_suffix(".pdf").name  # typically documents/paper.pdf
+    # 2) bibtex -> .bbl
+    subprocess.run(
+        ("bibtex", tex.with_suffix("").name),  # "paper"
+        check=True,
+        cwd=DOCUMENTS,
+    )
+
+    # 3) pdflatex -> include .bbl
+    subprocess.run(
+        ("pdflatex", "-interaction=nonstopmode", "-halt-on-error", tex.name),
+        check=True,
+        cwd=DOCUMENTS,
+    )
+
+    # 4) pdflatex -> resolve refs
+    subprocess.run(
+        ("pdflatex", "-interaction=nonstopmode", "-halt-on-error", tex.name),
+        check=True,
+        cwd=DOCUMENTS,
+    )
+
+    built = DOCUMENTS / tex.with_suffix(".pdf").name
     produces.write_bytes(built.read_bytes())

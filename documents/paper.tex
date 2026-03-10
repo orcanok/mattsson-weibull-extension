@@ -1,4 +1,5 @@
 \documentclass[12pt]{article}
+\usepackage[round]{natbib}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{setspace}
 \onehalfspacing
@@ -32,7 +33,7 @@
 
 \section{Introduction}
 
-The paper \textit{An Analytically Solvable Principal–Agent Model} by Lars-Göran Mattsson and Jörgen W. Weibull (GEB, 2023) studies a single-period,
+\cite{mattsson_weibull_2023} studies a single-period,
 discrete-time principal–agent model with moral hazard and a finite set of outcomes. The agent can induce any probability distribution over outcomes, but doing so entails an effort cost that varies across distributions.
 
 They focus on a class of effort-cost functions—\emph{Legendre-type} costs—that are invariant to merging equally paid outcomes. In particular,
@@ -422,6 +423,7 @@ w_1^*(\pi_i)=s\!\left(\max\{0,\pi_i+C_i-t_1\}\right),
 \end{equation}
 
 
-
+\bibliographystyle{apalike} 
+\bibliography{references}
 
 \end{document}
