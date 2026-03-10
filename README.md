@@ -25,13 +25,13 @@ Given a parameter case (outcomes, baseline probabilities, preferences, discount 
 
 1. Solves the principal’s problem under the canonical parameterization (thresholds):
    - $$\(t_1\)$$ for period 1,
-   - \(t_2(i)\) for period 2 conditional on history \(i\).
+   - $$\(t_2(i)\)$$ for period 2 conditional on history \(i\).
 
 2. Computes:
-   - wage schedules \(w_1(\pi_i)\), \(w_2(\pi_j \mid \pi_i)\),
-   - induced distributions \(p_1^*(i)\), \(p_2^*(j\mid i)\),
-   - principal profit \(\Pi\) and agent utility \(U\),
-   - continuation terms \(C_i\).
+   - wage schedules $$\(w_1(\pi_i)\)$$, $$\(w_2(\pi_j \mid \pi_i)\)$$,
+   - induced distributions $$\(p_1^*(i)\)$$, $$\(p_2^*(j\mid i)\)$$,
+   - principal profit $$\(\Pi\)$$ and agent utility $$\(U\)$$,
+   - continuation terms $$\(C_i\)$$.
 
 3. Writes the key numbers into:
    - `documents/generated/results.tex` (LaTeX macros),
@@ -44,7 +44,7 @@ Given a parameter case (outcomes, baseline probabilities, preferences, discount 
 ## Parameter cases (`CASES`)
 
 The numerical experiments are defined in `src/flexible_moral_hazard/params.py` as a dictionary `CASES`.  
-Each entry specifies \(\pi\), \(p^0\), discount factors \((\beta,\delta)\), preference parameters \((\rho,\theta,\varepsilon)\), and the outside option \(\bar u\).
+Each entry specifies $$\(\pi\)$$, $$\(p^0\)$$, discount factors $$\((\beta,\delta)\)$$, preference parameters $$\((\rho,\theta,\varepsilon)\)$$, and the outside option $$\(\bar u\)$$.
 
 ### Cases included
 
