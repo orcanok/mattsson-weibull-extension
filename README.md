@@ -97,6 +97,8 @@ All cases currently use:
 ├── bld/                           # Build outputs (optional; task-dependent)
 ├── pyproject.toml                 # pixi env + tooling config
 └── README.md
+```
+
 ## How to Run
 
 This project uses `pixi` for the environment and `pytask` for reproducible execution.
