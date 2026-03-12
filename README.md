@@ -101,7 +101,6 @@ All cases currently use:
 
 This project uses `pixi` for the environment and `pytask` for reproducible execution.
 
-Experience the reproducibility of this template in less than five minutes:
 
 1. **Install [Pixi](https://pixi.sh/)**
 
