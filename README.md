@@ -1,6 +1,6 @@
 
 
-# A Two-Period Extension of mattsson & Weibull (2023, GEB)
+# A Two-Period Extension of Mattsson & Weibull (2023, GEB)
 
 ## Overview
 
