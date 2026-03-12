@@ -3550,7 +3550,7 @@ packages:
   size: 30753
   timestamp: 1756729456476
 - pypi: ./
-  name: flexible-moral-hazard
+  name: mattsson-weibull-extension
   version: 0.1.dev6+g14f4c01d1
   sha256: 4abfe385e002182983a8c4bfcf52893a5516af36802c89ee2aced91c8ec208fb
   requires_python: ==3.14

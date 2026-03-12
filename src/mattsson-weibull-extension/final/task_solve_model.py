@@ -1,10 +1,10 @@
 # tasks/task_results_tex.py
 from __future__ import annotations
 
-from flexible_moral_hazard.config import DOCUMENTS
-from flexible_moral_hazard.io import write_results_tex
-from flexible_moral_hazard.params import CASES
-from flexible_moral_hazard.solve import solve_with_optimagic
+from mattsson-weibull-extension.config import DOCUMENTS
+from mattsson-weibull-extension.io import write_results_tex
+from mattsson-weibull-extension.params import CASES
+from mattsson-weibull-extension.solve import solve_with_optimagic
 
 
 def task_results_tex(produces=DOCUMENTS / "generated" / "results.tex"):

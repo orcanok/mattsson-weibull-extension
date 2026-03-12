@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytask
 
-from flexible_moral_hazard.config import DOCUMENTS, ROOT
+from mattsson-weibull-extension.config import DOCUMENTS, ROOT
 
 PAPER_FIGURES: list[Path] = []
 GENERATED_RESULTS: Path = DOCUMENTS / "generated" / "results.tex"
