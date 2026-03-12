@@ -29,8 +29,8 @@ Given a parameter case (outcomes, baseline probabilities, preferences, discount 
 
 2. Computes:
    - Thresholds
-   - principal profit $$\(\Pi\)$$ and agent utility $$\(U\)$$,
-   - continuation terms $$\(C_i\)$$.
+   - Principal profit $$\(\Pi\)$$ and agent utility $$\(U\)$$,
+   - Continuation terms $$\(C_i\)$$.
 
 3. Writes the key numbers into:
    - `documents/generated/results.tex` (LaTeX macros),
