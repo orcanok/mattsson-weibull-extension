@@ -1,6 +1,6 @@
 
 
-# Flexible Moral Hazard
+# A Two-Period Extension of Mattson & Weibull (2023, GEB)
 
 ## Overview
 
