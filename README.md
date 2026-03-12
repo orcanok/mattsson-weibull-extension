@@ -140,8 +140,6 @@ Quick check:
 pdflatex --version
 ```
 
-	•	documents/generated/results.tex — generated LaTeX macros for all cases
-	•	paper.pdf — compiled PDF (copied to repo root by the LaTeX task)
 
 ## Outputs
 
