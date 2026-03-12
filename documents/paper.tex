@@ -213,18 +213,18 @@ In that case, a joint two-period contract can increase both expected profit and 
 I begin with the numerical example in the appendix of Mattsson and Weibull.\footnote{For the code implementing the numerics from here on, see https://github.com/orcanok/mattsson-weibull-extension}
 There are three outcomes \(K=\{1,2,3\}\) with gross profits \(\pi\in\{-1,0,1\}\) 
 and baseline probabilities \(p^0=(0.5,0.3,0.2)\). The agent has unit relative risk aversion (\(\rho=1\)), external income \(\varepsilon=0.05\), 
-and a one-period outside option \(\bar u^{(1)}=\ln(0.12)\approx -2.120\).\footnote{Since utility is measured on an arbitrary cardinal scale 
+and a one-period outside option \(\bar u^{(1)}=\ln(0.12)\approx -2.12\).\footnote{Since utility is measured on an arbitrary cardinal scale 
 (and, for \(\rho=1\), \(u(w)=\theta\ln(w+\varepsilon)\)), negative reservation utility levels are not problematic.} In this case, the one-period 
 optimal contract is a threshold contract with \(t\approx \tOnebaselineoneperiod\), yielding an expected profit of approximately \(\Pibaselineoneperiod\) 
-for the principal while giving the agent expected utility \(\Ubaselineoneperiod\), i.e.\ the participation constraint almost binds.
+for the principal while giving the agent expected utility \(\fpeval{round(\Ubaselineoneperiod, 5)}\), i.e. the participation constraint almost binds.
 
 Assume both parties are fully patient, i.e.\ \(\beta=\delta=1\). The agent’s outside option for the \emph{two-period} relationship is
 \[
 \bar u \;=\; 2\ln(0.12)\;\approx\;-4.241 .
 \]
 If the parties contract separately in each period using the one-period optimal contract (with the same per-period outside option), 
-the principal’s expected total profit is approximately \(\fpeval{round(2*\Pibaselineoneperiod, 3)}\), while the agent’s expected 
-total utility equals \(\fpeval{round(2*\Ubaselineoneperiod, 3)}\) (i.e.\ her outside option). If instead the parties can sign a 
+the principal’s expected total profit is approximately \(\fpeval{round(2*\Pibaselineoneperiod, 5)}\), while the agent’s expected 
+total utility is approximately \(\fpeval{round(2*\Ubaselineoneperiod, 5)}\) (i.e.\ almost her outside option). If instead the parties can sign a 
 long-term two-period contract, the principal optimally chooses a history-dependent wage schedule of the form
 \[
 w_1^*(\pi_i)=s\!\left(\max\{0,\pi_i+C_i-t_1\}\right),\qquad \forall\, i\in K,
@@ -247,7 +247,7 @@ thus the participation constraint binds and the agent is held at her outside opt
 Next, lower the agent’s \emph{one-period} outside option to \(\ln(0.05)\approx -2.996\). As in the original paper, the one-period optimal 
 contract remains essentially unchanged (with \(t\approx \tOneoneperiodlowoutsideoption\)), so the induced allocation and the principal’s profit are unchanged; 
 however, participation is now slack and the agent receives strictly more than her reservation utility (e.g.\ \(\Uoneperiodlowoutsideoption > -2.996\) 
-in the one-period benchmark). If, on the other hand, the parties can sign a two-period contract, the principal again chooses a contract of the same form as before. The optimal parameters are approximately
+in the one-period benchmark). If, on the other hand, the parties can sign a two-period contract, the principal again chooses a contract of the form before. The optimal parameters are approximately
 \[
 t_1 \approx \tOnetwoperiodlowoutsideoption,\qquad
 t_2(1)\approx \tTwoAtwoperiodlowoutsideoption,\quad
