@@ -42,7 +42,7 @@ Given a parameter case (outcomes, baseline probabilities, preferences, discount 
 
 ## Parameter cases (`CASES`)
 
-The numerical experiments are defined in `src/mattsson-weibull-extension/params.py` as a dictionary `CASES`.  
+The numerical experiments are defined in `src/flexible_moral_hazard/params.py` as a dictionary `CASES`.  
 Each entry specifies $$\(\pi\)$$, $$\(p^0\)$$, discount factors $$\((\beta,\delta)\)$$, preference parameters $$\((\rho,\theta,\varepsilon)\)$$, and the outside option $$\(\bar u\)$$.
 
 ### Cases included
@@ -88,7 +88,7 @@ All cases currently use:
 ├── tasks/
 │   ├── task_results_tex.py        # Runs model for cases and writes results.tex
 │   └── task_documents.py          # Compiles the LaTeX paper to PDF
-├── src/mattsson-weibull-extension/
+├── src/flexible_moral_hazard/
 │   ├── model.py                   # Core formulas (utility, softmax, evaluator)
 │   ├── solve.py                   # Optimizers (optimagic wrapper, constraints)
 │   ├── params.py                  # Case dictionaries (CASES)

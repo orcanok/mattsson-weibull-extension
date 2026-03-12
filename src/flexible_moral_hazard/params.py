@@ -1,4 +1,4 @@
-# src/mattsson-weibull-extension/params.py
+# src/flexible_moral_hazard/params.py
 from __future__ import annotations
 
 import numpy as np
